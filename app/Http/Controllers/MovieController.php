@@ -16,6 +16,17 @@ class MovieController extends Controller
         return view('movies.index', compact('movies'));
     }
 
+    public function watch()
+    {
+        $movies = Movie::paginate(10);
+        return response()->json($movies);
+    }
+
+    public function showAll(Movie $movie)
+    {
+        return response()->json($movie);
+    }
+
     public function create()
     {
         $genres = Genre::all();

@@ -15,6 +15,18 @@ class GenreController extends Controller
         return view('genres.index', compact('genres'));
     }
 
+    public function watch()
+    {
+        $genres = Genre::all();
+        return response()->json($genres);
+    }
+
+    public function showMovies(Genre $genre)
+    {
+        $movies = $genre->movies()->paginate(10);
+        return response()->json($movies);
+    }
+
     public function create()
     {
         return view('genres.create');
